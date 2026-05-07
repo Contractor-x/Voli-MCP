@@ -17,7 +17,9 @@ class PriceFeed:
         self.alpha: Optional[AlphaVantageClient] = None
 
         try:
-            self.twelve = TwelveDataClient()
+            twelve_client = TwelveDataClient()
+            if twelve_client.enabled:
+                self.twelve = twelve_client
         except Exception:
             self.twelve = None
 
@@ -27,7 +29,10 @@ class PriceFeed:
             self.alpha = None
 
         if self.twelve is None and self.alpha is None:
-            raise ValueError("No price feed API keys found (TWELVE_DATA_API_KEY or ALPHA_VANTAGE_API_KEY)")
+            raise ValueError(
+                "No price feed API keys found "
+                "(TWELVE_DATA_API_KEYS, TWELVE_DATA_API_KEY, or ALPHA_VANTAGE_API_KEY)"
+            )
 
     async def get_intraday_data(
         self,

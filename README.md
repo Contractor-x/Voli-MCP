@@ -150,7 +150,8 @@ Create a `.env` file in the project root:
 # Copy example file
 cp .env.example .env
 
-# Edit with your API key
+# Edit with your API key(s)
+TWELVE_DATA_API_KEYS=your_first_key_here,your_second_key_here
 TWELVE_DATA_API_KEY=your_actual_api_key_here
 MAX_REQUESTS_PER_DAY=800
 REQUEST_DELAY_SECONDS=1
@@ -161,7 +162,8 @@ LOG_LEVEL=INFO
 ### Rate Limiting
 
 The server includes built-in rate limiting:
-- **Free Tier**: 800 requests/day
+- **Free Tier**: 800 requests/day per Twelve Data key
+- **Key Pooling**: Automatically rotates across `TWELVE_DATA_API_KEYS` when one key is depleted
 - **Configurable Delay**: 1 second between requests (configurable)
 - **Automatic Backoff**: Exponential backoff on rate limit errors
 
@@ -188,7 +190,7 @@ Add to your `claude_desktop_config.json`:
       "args": ["-m", "src.server"],
       "cwd": "/path/to/voli-mcp",
       "env": {
-        "TWELVE_DATA_API_KEY": "your_api_key_here"
+        "TWELVE_DATA_API_KEYS": "your_first_key_here,your_second_key_here"
       }
     }
   }
