@@ -173,6 +173,8 @@ The server includes built-in rate limiting:
 
 Run the MCP server for integration with MCP-compatible clients:
 
+This MCP server can also be used through the [ctxprotocol marketplace](https://www.ctxprotocol.com/) under the Financial Markets section.
+
 ```bash
 # Start the MCP server
 python -m src.server
@@ -454,7 +456,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 -->
 ##  Acknowledgments
 
-- ctxprotocol
+- [ctxprotocol marketplace](https://www.ctxprotocol.com/)
 
 ##  Support
 
